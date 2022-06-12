@@ -1,0 +1,9 @@
+---
+- name: Install Apache server
+  hosts: hvm
+  become: yes
+
+  vars_files:
+    - pass.yaml
+  roles:
+    - apache_role

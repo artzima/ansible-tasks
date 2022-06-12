@@ -1,0 +1,25 @@
+---
+- name: Changing motd
+  hosts: hvm
+  become: yes
+  
+  vars_files:
+    - pass.yaml
+
+  vars:
+    machine: "{{ ansible_facts['nodename'] }}"
+    ip_addr: "{{ ansible_facts['enp0s3']['ipv4']['address'] }}"
+    greeting: Have a nice day!
+
+  tasks:
+  - name: Creating file
+    copy:
+      dest: "/etc/update-motd.d/20-hello"
+      content: |
+        #!/bin/bash
+        echo "-----------------------------------------------"
+        echo "Рабочее место: {{ machine }}"
+        echo "IP-адрес: {{ ip_addr }}"
+        echo {{ greeting }}
+        echo "-----------------------------------------------"
+      mode: 0755

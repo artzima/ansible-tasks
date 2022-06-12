@@ -1,0 +1,6 @@
+- hosts: hvm
+
+  tasks:
+    - name: Processor name
+      debug:
+        var: ansible_devices.sda.size 

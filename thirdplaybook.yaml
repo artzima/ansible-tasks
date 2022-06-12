@@ -1,0 +1,19 @@
+---
+- name: Changing motd
+  hosts: hvm
+  become: yes
+
+  vars_files:
+    - pass.yaml
+  vars:
+    txt: 
+        echo -e "-----------------------------------\n\tNEW PHRASE FOR MOTD\n-----------------------------------"
+  tasks:
+  - name: Creating file
+    copy:
+      dest: "/etc/update-motd.d/20-hello"
+      content: |
+        #!/bin/bash
+        {{ txt }}
+      mode: 0755
+      owner: zima

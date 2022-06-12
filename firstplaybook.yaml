@@ -1,0 +1,14 @@
+---
+- name: Download Apache Kafka
+  hosts: all
+
+  tasks:
+  - name: Creating directory
+    file:
+      path: /home/zima/kafka
+      state: directory
+  - name: Unpacking archive
+    unarchive:
+      src: https://dlcdn.apache.org/kafka/3.1.1/kafka-3.1.1-src.tgz
+      dest: /home/zima/kafka
+      remote_src: yes

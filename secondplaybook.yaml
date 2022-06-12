@@ -1,0 +1,15 @@
+---
+- name: Install tune packege
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Download
+    apt:
+      name: tuned
+      state: latest
+      update_cache: yes
+  - name: Enable tune service
+    systemd:
+      name: tuned
+      enabled: yes

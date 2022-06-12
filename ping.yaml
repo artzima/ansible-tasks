@@ -1,0 +1,7 @@
+---
+- name: Executing hosts ping
+  hosts: workstations
+    
+  tasks:
+  - name: Ping accesable hosts
+    ping:
